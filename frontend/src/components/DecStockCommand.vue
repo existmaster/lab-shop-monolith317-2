@@ -2,7 +2,7 @@
 
     <v-card outlined>
         <v-card-title>
-            DecreaseStock
+            DecStock
         </v-card-title>
 
         <v-card-text>
@@ -14,9 +14,9 @@
             <v-btn
                     color="deep-purple lighten-2"
                     text
-                    @click="decreaseStock"
+                    @click="decStock"
             >
-                DecreaseStock
+                DecStock
             </v-btn>
             
             <v-btn
@@ -34,7 +34,7 @@
 <script>
    
     export default {
-        name: 'DecreaseStockCommand',
+        name: 'DecStockCommand',
         components:{},
         props: {},
         data: () => ({
@@ -47,8 +47,8 @@
         watch: {
         },
         methods: {
-            decreaseStock() {
-                this.$emit('decreaseStock', this.value);
+            decStock() {
+                this.$emit('decStock', this.value);
             },
             close() {
                 this.$emit('closeDialog');

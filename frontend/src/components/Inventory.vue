@@ -61,15 +61,15 @@
                     v-if="!editMode"
                     color="deep-purple lighten-2"
                     text
-                    @click="openDecStock"
+                    @click="openDecreaseStock"
             >
-                DecStock
+                DecreaseStock
             </v-btn>
-            <v-dialog v-model="decStockDiagram" width="500">
-                <DecStockCommand
-                        @closeDialog="closeDecStock"
-                        @decStock="decStock"
-                ></DecStockCommand>
+            <v-dialog v-model="decreaseStockDiagram" width="500">
+                <DecreaseStockCommand
+                        @closeDialog="closeDecreaseStock"
+                        @decreaseStock="decreaseStock"
+                ></DecreaseStockCommand>
             </v-dialog>
         </v-card-actions>
 
@@ -108,7 +108,7 @@
                 timeout: 5000,
                 text: ''
             },
-            decStockDiagram: false,
+            decreaseStockDiagram: false,
         }),
         computed:{
         },
@@ -203,17 +203,17 @@
             change(){
                 this.$emit('input', this.value);
             },
-            async decStock(params) {
+            async decreaseStock(params) {
                 try {
                     if(!this.offline) {
-                        var temp = await axios.put(axios.fixUrl(this.value._links['decstock'].href), params)
+                        var temp = await axios.put(axios.fixUrl(this.value._links['decreasestock'].href), params)
                         for(var k in temp.data) {
                             this.value[k]=temp.data[k];
                         }
                     }
 
                     this.editMode = false;
-                    this.closeDecStock();
+                    this.closeDecreaseStock();
                 } catch(e) {
                     this.snackbar.status = true
                     if(e.response && e.response.data.message) {
@@ -223,11 +223,11 @@
                     }
                 }
             },
-            openDecStock() {
-                this.decStockDiagram = true;
+            openDecreaseStock() {
+                this.decreaseStockDiagram = true;
             },
-            closeDecStock() {
-                this.decStockDiagram = false;
+            closeDecreaseStock() {
+                this.decreaseStockDiagram = false;
             },
         },
     }

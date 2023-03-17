@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface InventoryService {
     @RequestMapping(
         method = RequestMethod.PUT,
-        path = "/inventories/{id}/decstock"
+        path = "/inventories/{id}/decreasestock"
     )
-    public void decStock(
+    public void decreaseStock(
         @PathVariable("id") Long id,
-        @RequestBody DecStockCommand decStockCommand
+        @RequestBody DecreaseStockCommand decreaseStockCommand
     );
 }

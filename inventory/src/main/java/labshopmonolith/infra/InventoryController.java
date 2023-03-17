@@ -19,24 +19,24 @@ public class InventoryController {
     InventoryRepository inventoryRepository;
 
     @RequestMapping(
-        value = "inventories/{id}/decstock",
+        value = "inventories/{id}/decreasestock",
         method = RequestMethod.PUT,
         produces = "application/json;charset=UTF-8"
     )
-    public Inventory decStock(
+    public Inventory decreaseStock(
         @PathVariable(value = "id") Long id,
-        @RequestBody DecStockCommand decStockCommand,
+        @RequestBody DecreaseStockCommand decreaseStockCommand,
         HttpServletRequest request,
         HttpServletResponse response
     ) throws Exception {
-        System.out.println("##### /inventory/decStock  called #####");
+        System.out.println("##### /inventory/decreaseStock  called #####");
         Optional<Inventory> optionalInventory = inventoryRepository.findById(
             id
         );
 
         optionalInventory.orElseThrow(() -> new Exception("No Entity Found"));
         Inventory inventory = optionalInventory.get();
-        inventory.decStock(decStockCommand);
+        inventory.decreaseStock(decreaseStockCommand);
 
         inventoryRepository.save(inventory);
         return inventory;
